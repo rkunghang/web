@@ -7,13 +7,76 @@
   <style>
     /* --- Base page --- */
     body {
-      background: #000;
+      background: linear-gradient(135deg, #1a0b2e, #4d1a4d, #0c1445);
       height: 100vh;
       margin: 0;
       overflow: hidden;
       font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+      position: relative;
     }
 
+    /* Romantic background elements */
+    .bg-hearts {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    .bg-heart {
+      position: absolute;
+      color: rgba(255, 105, 180, 0.15);
+      font-size: 24px;
+      animation: float-heart 20s infinite linear;
+    }
+
+    @keyframes float-heart {
+      0% {
+        transform: translateY(100vh) rotate(0deg);
+        opacity: 0;
+      }
+      10% {
+        opacity: 0.3;
+      }
+      90% {
+        opacity: 0.3;
+      }
+      100% {
+        transform: translateY(-100px) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    .twinkling-stars {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    .star {
+      position: absolute;
+      background-color: rgba(255, 255, 255, 0.8);
+      border-radius: 50%;
+      animation: twinkle 4s infinite ease-in-out;
+    }
+
+    @keyframes twinkle {
+      0%, 100% {
+        opacity: 0.3;
+        transform: scale(0.8);
+      }
+      50% {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
 
     /* --- Love words --- */
     #ui .love {
@@ -30,11 +93,11 @@
       text-shadow: 0 0 10px #ea80b0;
     }
     /* Make the last item match the others */
-#ui .love:last-child .love_word {
-  color: #ea80b0;
-  font-size: 1.4rem;
-  text-shadow: 0 0 10px #fff;
-}
+    #ui .love:last-child .love_word {
+      color: #ea80b0;
+      font-size: 1.4rem;
+      text-shadow: 0 0 10px #fff;
+    }
 
     #ui .love_word {
       color: #ea80b0;
@@ -84,12 +147,18 @@
   </style>
 </head>
 <body>
+<<<<<<< HEAD
+=======
+  <!-- Background elements -->
+  <div class="bg-hearts" id="bgHearts"></div>
+  <div class="twinkling-stars" id="twinklingStars"></div>
+>>>>>>> 832e0f5 (Update index.html)
 
   <div id="ui"></div>
 
   <script>
-    // Create N floating “I love you” items (was multilingual; now all English)
-    const N = 100;     // adjust if you want fewer/more
+    // Create N floating "Kan-Channn" items
+    const N = 100;
     const ui = document.getElementById('ui');
 
     for (let i = 1; i <= N; i++) {
@@ -105,14 +174,37 @@
 
       const word = document.createElement('div');
       word.className = 'love_word';
-      word.textContent = 'I love you';
-      word.textContent = 'Kan-Channn';
-
+      word.textContent = 'Kanchannn';
 
       v.appendChild(word);
       h.appendChild(v);
       love.appendChild(h);
       ui.appendChild(love);
+    }
+
+    // Create background hearts
+    const bgHearts = document.getElementById('bgHearts');
+    for (let i = 0; i < 15; i++) {
+      const heart = document.createElement('div');
+      heart.className = 'bg-heart';
+      heart.innerHTML = '❤';
+      heart.style.left = Math.random() * 100 + 'vw';
+      heart.style.animationDelay = Math.random() * 20 + 's';
+      heart.style.fontSize = (20 + Math.random() * 30) + 'px';
+      bgHearts.appendChild(heart);
+    }
+
+    // Create twinkling stars
+    const twinklingStars = document.getElementById('twinklingStars');
+    for (let i = 0; i < 50; i++) {
+      const star = document.createElement('div');
+      star.className = 'star';
+      star.style.left = Math.random() * 100 + 'vw';
+      star.style.top = Math.random() * 100 + 'vh';
+      star.style.width = (1 + Math.random() * 3) + 'px';
+      star.style.height = star.style.width;
+      star.style.animationDelay = Math.random() * 4 + 's';
+      twinklingStars.appendChild(star);
     }
   </script>
 </body>
